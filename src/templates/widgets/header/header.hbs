@@ -1,0 +1,43 @@
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar">&nbsp;</span>
+					<span class="icon-bar">&nbsp;</span>
+					<span class="icon-bar">&nbsp;</span>
+				</button>
+				<a href="http://fluffybuddy.de" class="navbar-brand">Fluffy Buddy</a>
+			</div>
+			<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="/"> Frontpage </a>
+					</li>
+					<li>
+						<a href="/createPost">Create Post </a>
+					</li>
+					<li>
+						<a href="/fbq">FBQ </a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					
+						{{#if currentUser}}
+							<li>
+								<a href="/profile">Logged in as {{userEmail}}</a>
+							</li>
+							<li>
+								<a href="#" id="logout">Logout</a>
+							</li>
+						{{else}}
+							<li>
+								<a href="/login">Login</a>
+							</li>
+						{{/if}}
+					
+				</ul>
+
+			</div>
+		</div>
+	</nav>
