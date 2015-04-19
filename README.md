@@ -43,19 +43,3 @@ Third party libraries
 
 `src/libs/` folder contains 3rd-party libraries. Update them manually if they are out-of-date.  
 You can use un-minified libraries, `grunt release` will minify everything for you.
-
-Lo-Dash
--------
-The lodash library is generated with the lodash-cli generator.  
-If you like underscore.js more, feel free to replace it in your project.
-
-### Install
-```
-npm i -g lodash-cli`
-```
-
-### Generate
-```
-cd libs
-lodash exports=amd minus=template moduleId=underscore
-```
