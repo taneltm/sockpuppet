@@ -15,7 +15,7 @@ SockPuppet is a boilerplate for a project which uses...
 Setup
 =====
 
-Before you can use this, you will need to install Grunt.
+Before you can use this, you will need to install Grunt.  
 You can install it by running `npm install -g grunt-cli`.
 
 Other dependencies are installed when you run `npm install`.
@@ -24,16 +24,16 @@ Other dependencies are installed when you run `npm install`.
 Client
 ======
 
-The `src` folder contains the source files for the client.
-Run `grunt` or `grunt build` to builds the client under `build/` (unoptimized).
+The `src` folder contains the source files for the client.  
+Run `grunt` or `grunt build` to builds the client under `build/` (unoptimized).  
 Run `grunt release` to build the client under `build/` and then create an optimized release under `release/`.
 
 
 Server
 ======
 
-The current server-side code is meant as a simplified example.
-`node server` starts the server on port 80 and serves client files from `release/`.
+The current server-side code is meant as a simplified example.  
+`node server` starts the server on port 80 and serves client files from `release/`.  
 `node server debug` starts the server on port 3000 and serves client files from `build/`, useful when you want to debug the client using the browser.
 
 After starting the server, you can navigate to http://localhost or http://localhost:3000 and you should see the demo page.
@@ -42,12 +42,12 @@ After starting the server, you can navigate to http://localhost or http://localh
 Third party libraries
 =====================
 
-`src/libs/` folder contains 3rd-party libraries. Update them manually if they are out-of-date.
+`src/libs/` folder contains 3rd-party libraries. Update them manually if they are out-of-date.  
 You can use un-minified libraries, `grunt release` will minify everything for you.
 
 Lo-Dash
 -------
-The lodash library is generated with the lodash-cli generator.
+The lodash library is generated with the lodash-cli generator.  
 If you like underscore.js more, feel free to replace it in your project.
 
 ### Install
