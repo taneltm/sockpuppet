@@ -1,4 +1,4 @@
-<div class="container">
+<div class="widget-header container">
 	<div class="row">
 		
 		<nav class="navbar navbar-default">

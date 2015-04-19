@@ -9,7 +9,7 @@ define(function(require, exports, module) {
 		template: template,
 
 		regions: {
-			formAuthRegion: ".widget-form-auth"
+			formAuthRegion: ".region-authentication-form"
 		},
 
 		onRender: function() {

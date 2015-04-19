@@ -1,22 +1,22 @@
-<div class="well">
+<div class="page-profile well">
 	<h1>Profile</h1>
 	<% if (isLoggedIn) { %>
 		<table class="table table-hover">
 			<tr>
 				<th>honorific</th>
-				<td><%- honorific %><td>
+				<td><%- honorific %></td>
 			</tr>
 			<tr>
 				<th>forename</th>
-				<td><%- forename %><td>
+				<td><%- forename %></td>
 			</tr>
 			<tr>
 				<th>surname</th>
-				<td><%- surname %><td>
+				<td><%- surname %></td>
 			</tr>
 			<tr>
 				<th>lifestory</th>
-				<td><%- lifestory %><td>
+				<td><%- lifestory %></td>
 			</tr>
 		</table>
 	<% } else { %>

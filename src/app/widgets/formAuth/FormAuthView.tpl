@@ -1,4 +1,4 @@
-<form>
+<form class="widget-form-auth">
   <fieldset>
     <div class="form-group">
       <label for="field-email" class="control-label">Email</label>
