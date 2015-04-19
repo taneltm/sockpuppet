@@ -1,12 +1,12 @@
 define(function(require, exports, module) {
 	var App        = require("App");
 	var Marionette = require("marionette");
-	var templates  = require("hbs-pages");
+	var template   = require("tpl!pages/profile/ProfileLayout.tpl");
 
 	var ProfileLayout = {
 		className: "container",
 		
-		template: templates.ProfileLayout,
+		template: template,
 
 		model: App.user
 	};

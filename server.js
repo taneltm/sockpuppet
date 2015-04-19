@@ -4,7 +4,7 @@
 var config = {
 	"default": {
 		port: 80,
-		path: '/public',
+		path: '/release',
 		cookieSecret: 'nyancatIsReal'
 	},
 	"debug": {

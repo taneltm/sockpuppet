@@ -1,12 +1,12 @@
 define(function(require, exports, module) {
 	var Marionette = require("marionette");
 	var Backbone   = require("backbone");
-	var templates  = require("hbs-pages");
+	var template   = require("tpl!pages/test/TestLayout.tpl");
 
 	var TestLayout = {
 		className: "container",
 		
-		template: templates.TestLayout,
+		template: template,
 
 		initialize: function(options) {
 			this.model = new Backbone.Model();

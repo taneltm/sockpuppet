@@ -1,11 +1,11 @@
 define(function(require, exports, module) {
 	var Marionette = require("marionette");
-	var templates  = require("hbs-pages");
+	var template   = require("tpl!pages/home/HomeLayout.tpl");
 
 	var HomeLayout = {
 		className: "container",
 		
-		template: templates.HomeLayout,
+		template: template,
 
 		regions: {
 			browserRegion: "#browser"

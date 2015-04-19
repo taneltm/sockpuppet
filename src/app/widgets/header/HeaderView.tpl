@@ -25,18 +25,18 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						{{#if isLoggedIn}}
+						<% if (isLoggedIn) { %>
 							<li>
-								<a href="#profile">Logged in as {{honorific}} {{surname}}</a>
+								<a href="#profile">Logged in as <%- honorific %> <%- surname %></a>
 							</li>
 							<li>
 								<a href="#logout">Logout</a>
 							</li>
-						{{else}}
+						<% } else { %>
 							<li>
 								<a href="#login">Login</a>
 							</li>
-						{{/if}}
+						<% } %>
 					</ul>
 				</div>
 			</div>

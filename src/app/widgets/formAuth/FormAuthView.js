@@ -2,10 +2,10 @@ define(function(require, exports, module) {
 	var console    = require("utils/console");
 	var Marionette = require("marionette");
 	var App        = require("App");
-	var templates  = require("hbs-widgets");
+	var template   = require("tpl!widgets/formAuth/FormAuthView.tpl");
 
 	var FormAuthView = {
-		template: templates.FormAuthTemplate,
+		template: template,
 
 		ui: {
 			"form": "form",

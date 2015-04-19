@@ -1,11 +1,11 @@
 define(function(require, exports, module) {
 	var Marionette = require("marionette");
-	var templates  = require("hbs-pages");
+	var template   = require("tpl!pages/logout/LogoutLayout.tpl");
 
 	var LogoutLayout = {
 		className: "container",
 		
-		template: templates.LogoutLayout
+		template: template
 	};
 
 	module.exports = Marionette.LayoutView.extend(LogoutLayout);

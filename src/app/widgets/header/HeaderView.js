@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
 	var App        = require("App");
 	var Marionette = require("marionette");
-	var templates  = require("hbs-widgets");
+	var template   = require("tpl!widgets/header/HeaderView.tpl");
 
 	var HeaderView = {
-		template: templates.HeaderView,
+		template: template,
 
 		model: App.user,
 

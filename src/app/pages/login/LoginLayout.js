@@ -1,12 +1,12 @@
 define(function(require, exports, module) {
 	var Marionette = require("marionette");
-	var templates  = require("hbs-pages");
+	var template   = require("tpl!pages/login/LoginLayout.tpl");
 	var FormAuth   = require("widgets/formAuth/FormAuth");
 
 	var LoginLayout = {
 		className: "container",
 		
-		template: templates.LoginLayout,
+		template: template,
 
 		regions: {
 			formAuthRegion: ".widget-form-auth"

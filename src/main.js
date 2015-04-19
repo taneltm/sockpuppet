@@ -14,6 +14,8 @@ require.config({
 		"marionette":  "../libs/backbone.marionette",
 		"handlebars":  "../libs/handlebars.runtime-v2.0.0",
 		"socket.io":   "../libs/socket.io",
+		"text":        "../libs/require.text",
+		"tpl":         "../libs/require.underscore-tpl",
 		"hbs-pages":   "../hbs-pages",
 		"hbs-widgets": "../hbs-widgets"
 	}
