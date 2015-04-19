@@ -9,7 +9,7 @@ require.config({
 
 		"bootstrap":   "../libs/bootstrap",
 		"jquery":      "../libs/jquery",
-		"underscore":  "../libs/lodash.custom",
+		"underscore":  "../libs/lodash",
 		"backbone":    "../libs/backbone",
 		"marionette":  "../libs/backbone.marionette",
 		"handlebars":  "../libs/handlebars.runtime-v2.0.0",
