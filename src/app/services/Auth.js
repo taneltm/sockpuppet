@@ -10,6 +10,9 @@ define(function(require, exports, module) {
 			App.sock.on("auth:login:success", this.onLoginSuccess);
 			App.sock.on("auth:login:fail", this.onLoginFail);
 			App.sock.on("auth:logout", this.onLogoutDone);
+			App.sock.on("auth:status", this.onStatusDone);
+
+			App.sock.emit("auth:status");
 		},
 
 		onBeforeDestroy: function() {
@@ -36,6 +39,10 @@ define(function(require, exports, module) {
 
 		onLogoutDone: function(response) {
 			App.service.trigger("auth:logout:done", response);
+		},
+
+		onStatusDone: function(response) {
+			App.service.trigger("auth:status:done", response);
 		}
 	};
 

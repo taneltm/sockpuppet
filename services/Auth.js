@@ -26,7 +26,8 @@ function Auth (socket) {
 	socket.on("auth:logout", logout);
 
 	function status() {
-		var details = this.socket.request.session.details || db["logged-out"].details;
+		console.log("auth:status");
+		var details = socket.request.session.details || db["logged-out"].details;
 		socket.emit("auth:status", details);
 	};
 
@@ -51,6 +52,8 @@ function Auth (socket) {
 			socket.request.session.details = details;
 			socket.emit("auth:login:fail", details);
 		}
+
+		socket.request.session.save();
 	};
 
 	function logout() {
@@ -59,6 +62,8 @@ function Auth (socket) {
 
 		socket.request.session.details = details;
 		socket.emit("auth:logout", details);
+
+		socket.request.session.save();
 	};
 };
 

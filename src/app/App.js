@@ -39,6 +39,10 @@ define(function(require, exports, module) {
 		App.navigate("");
 	});
 
+	App.service.on("auth:status:done", function(userInfo) {
+		App.user.set(userInfo);
+	})
+
 	App.addInitializer(function() {
 		Backbone.history.start();
 	});
