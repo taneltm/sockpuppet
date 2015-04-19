@@ -5,7 +5,6 @@
 		<ul>
 			<li>RequireJS modules</li>
 			<li>Marionette.js for the MVC framework</li>
-			<li>Handlebars.js for templating</li>
 			<li>Stylus as the CSS preprocessor</li>
 			<li>Node.js/IO.js as the backend</li>
 			<li>Socket.io as the link between the client and the server</li>
