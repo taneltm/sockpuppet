@@ -4,7 +4,6 @@ SockPuppet
 SockPuppet is a boilerplate for a project which uses...
 * RequireJS modules
 * Marionette.js for the MVC framework
-* Handlebars.js for templating
 * Stylus as the CSS preprocessor
 * Node.js/IO.js as the backend
 * Socket.io as the link between the client and the server
