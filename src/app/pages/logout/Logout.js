@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 		view: LogoutLayout,
 
 		initialize: function(options) {
-			console.log("Logout:initialize")
+			console.log("Logout:initialize");
 
 			this.listenTo(App.service, "auth:logout:done", this.onLogout);
 			

@@ -27,7 +27,7 @@ define(function(require, exports, module) {
 	App.sock     = io(serverUrl);
 	App.navigate = function(path) {
 		App.router.navigate(path, {trigger: true});
-	}
+	};
 
 	App.layout.render();
 	
@@ -41,7 +41,7 @@ define(function(require, exports, module) {
 
 	App.service.on("auth:status:done", function(userInfo) {
 		App.user.set(userInfo);
-	})
+	});
 
 	App.addInitializer(function() {
 		Backbone.history.start();

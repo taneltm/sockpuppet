@@ -13,7 +13,7 @@ define(function(require, exports, module) {
 		},
 
 		onRender: function() {
-			console.log("LoginLayout:onRender")
+			console.log("LoginLayout:onRender");
 			new FormAuth({ region: this.formAuthRegion });
 		}
 	};

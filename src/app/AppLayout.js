@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 			main: "main",
 			footer: "footer"
 		}
-	});
+	};
 
 	module.exports = Marionette.LayoutView.extend(AppLayout);
 });

@@ -65,6 +65,13 @@ module.exports = function(grunt) {
       }
     },
 
+    jshint: {
+      options: {
+        reporter: require('jshint-stylish')
+      },
+      all: ['Gruntfile.js', 'src/app/**/*.js']
+    },
+
     clean: {
       "build": ["build"],
       "release": ["release"]
@@ -74,10 +81,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.registerTask('build', [
     'clean',
+    'jshint',
     'stylus',
     'copy:build'
   ]);
