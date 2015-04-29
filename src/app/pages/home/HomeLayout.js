@@ -5,11 +5,7 @@ define(function(require, exports, module) {
 	var HomeLayout = {
 		className: "container",
 		
-		template: template,
-
-		regions: {
-			browserRegion: "#browser"
-		}
+		template: template
 	};
 
 	module.exports = Marionette.LayoutView.extend(HomeLayout);
