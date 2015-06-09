@@ -1,5 +1,5 @@
-SockPuppet
-==========
+# SockPuppet ![](https://raw.githubusercontent.com/taneltm/sockpuppet/master/src/images/Sockpuppet_icon.png)
+
 
 SockPuppet is a boilerplate for a project which uses...
 * RequireJS modules
