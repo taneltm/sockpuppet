@@ -1,7 +1,7 @@
 <div class="page-home jumbotron">
 	<img src="images/a_sock_puppet_from_Totally_Socks.png" class="the-sockpuppet pull-right img-responsive img-circle"/>
-	<h1>SockPuppet</h1>
-	<p>SockPuppet is a boilerplate for a project which uses...
+	<h1>Sockpuppet</h1>
+	<p>Sockpuppet is a boilerplate for a project which uses...
 		<ul>
 			<li>RequireJS modules</li>
 			<li>Marionette.js for the MVC framework</li>

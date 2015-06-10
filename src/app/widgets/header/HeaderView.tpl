@@ -10,7 +10,7 @@
 						<span class="icon-bar">&nbsp;</span>
 						<span class="icon-bar">&nbsp;</span>
 					</button>
-					<a href="#" class="navbar-brand">SockPuppet</a>
+					<a href="#" class="navbar-brand">Sockpuppet</a>
 				</div>
 				<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
