@@ -1,7 +1,7 @@
-# SockPuppet ![](https://raw.githubusercontent.com/taneltm/sockpuppet/master/src/images/Sockpuppet_icon.png)
+# Sockpuppet ![](https://raw.githubusercontent.com/taneltm/sockpuppet/master/src/images/Sockpuppet_icon.png)
 
 
-SockPuppet is a boilerplate for a project which uses...
+Sockpuppet is a boilerplate for a project which uses...
 * RequireJS modules
 * Marionette.js for the MVC framework
 * Stylus as the CSS preprocessor
