@@ -2,8 +2,9 @@ require.config({
 	baseUrl: "app",
 	paths: {
 		/* --[ Paths ]--------------------------------------------------- */
-		"Page": "base/Page",
+		"Page":   "base/Page",
 		"Widget": "base/Widget",
+		"Sock":   "base/Sock",
 
 		"utils": "../utils",
 

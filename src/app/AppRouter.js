@@ -8,6 +8,7 @@ define(function(require, exports, module) {
 			"logout": "logout",
 			"profile": "profile",
 			"link/:id": "test",
+			"messenger": "messenger"
 		}
 	};
 

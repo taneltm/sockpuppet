@@ -6,11 +6,12 @@ define(function(require, exports, module) {
 
 	var HeaderWidget = require("widgets/header/Header");
 
-	var Home    = require("pages/home/Home");
-	var Login   = require("pages/login/Login");
-	var Logout  = require("pages/logout/Logout");
-	var Profile = require("pages/profile/Profile");
-	var Test    = require("pages/test/Test");
+	var Home      = require("pages/home/Home");
+	var Login     = require("pages/login/Login");
+	var Logout    = require("pages/logout/Logout");
+	var Profile   = require("pages/profile/Profile");
+	var Test      = require("pages/test/Test");
+	var Messenger = require("pages/messenger/Messenger");
 
 	var AppController = {
 		initialize: function() {
@@ -41,6 +42,10 @@ define(function(require, exports, module) {
 
 		test: function(id) {
 			new Test({ linkId: id });
+		},
+
+		messenger: function() {
+			new Messenger();
 		}
 	};
 
