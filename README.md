@@ -48,4 +48,4 @@ Planned and implemented changes
 ===============================
 - [ ] Add Sock.sync to use Socket.io with models and collections automatically.
 - [ ] Add a simple messenger example to demonstrate Sock.sync.
-- [ ] Pages do not need a controller. The Page class should extend LayoutView.
+- [ ] Pages do not need a controller. The Page class should extend LayoutView for convenience.
