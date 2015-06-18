@@ -43,3 +43,9 @@ Third party libraries
 
 `src/libs/` folder contains 3rd-party libraries. Update them manually if they are out-of-date.  
 You can use un-minified libraries, `grunt release` will minify everything for you.
+
+Planned and implemented changes
+===============================
+- [ ] Add Sock.sync to use Socket.io with models and collections automatically.
+- [ ] Add a simple messenger example to demonstrate Sock.sync.
+- [ ] Pages do not need a controller. The Page class should extend LayoutView for convenience.
