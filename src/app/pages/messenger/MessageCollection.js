@@ -18,9 +18,7 @@ define(function(require, exports, module) {
         initialize: function() {
             // Fetch the initial data and start socket listener
             this.fetch({
-                success: function(a, b, c) {
-                    console.log(this);
-                }.bind(this)
+                remove: false
             });
         },
 

@@ -7,5 +7,5 @@ define(function(require, exports, module) {
         template: template
     };
 
-    module.exports = Marionette.CollectionView.extend(MessageCollectionView);
+    module.exports = Marionette.ItemView.extend(MessageCollectionView);
 });

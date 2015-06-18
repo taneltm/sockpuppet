@@ -862,6 +862,7 @@
       var collection = this;
       options.success = function(resp) {
         var method = options.reset ? 'reset' : 'set';
+        console.log("Backbone.Collection.fetch.success", method, resp, options);
         collection[method](resp, options);
         if (success) success(collection, resp, options);
         collection.trigger('sync', collection, resp, options);

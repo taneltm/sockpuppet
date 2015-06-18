@@ -7,7 +7,13 @@ define(function(require, exports, module) {
     var MessageCollectionView = {
         collection: new MessageCollection(),
 
-        childView: MessageItemView
+        childView: MessageItemView,
+
+        initialize: function() {
+            setTimeout(function() {
+                this.render();
+            }.bind(this), 2000);
+        }
     };
 
     module.exports = Marionette.CollectionView.extend(MessageCollectionView);

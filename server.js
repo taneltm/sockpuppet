@@ -87,12 +87,15 @@ io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next);
 });
 
+var chatService = new ChatService();
+
 io.on('connection', function (socket) {
 	console.log("sock:connection");
 
 	new AuthService(socket);
 	new TestService(socket);
-	new ChatService(socket);
+
+	chatService.setSocket(socket);
 });
 
 /**

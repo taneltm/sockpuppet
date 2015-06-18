@@ -12,6 +12,13 @@ define(function(require, exports, module) {
         console.log("SocketSync:onDisconnect");
     });
 
+    var socketEmit = function(channel) {
+        var namespace = [channel, "create"].join("::");
+        return function(data) {
+            socket.emit(namespace, data);
+        };
+    };
+
     var socketSync = function(channel) {
         console.log("Sock.socketSync");
         var bound = false;
@@ -50,6 +57,7 @@ define(function(require, exports, module) {
 
     var Sock = {
         sync: socketSync,
+        emit: socketEmit,
         socket: socket
     };
 
