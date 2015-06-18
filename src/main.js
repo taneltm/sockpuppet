@@ -8,7 +8,7 @@ require.config({
 
 		"utils": "../utils",
 
-		"bootstrap":   "../libs/bootstrap",
+		"bootstrap":   "../libs/bootstrap/bootstrap",
 		"jquery":      "../libs/jquery",
 		"underscore":  "../libs/lodash",
 		"backbone":    "../libs/backbone",
@@ -17,12 +17,17 @@ require.config({
 		"socket.io":   "../libs/socket.io",
 		"text":        "../libs/require.text",
 		"tpl":         "../libs/require.underscore-tpl",
+		"moment":      "../libs/moment",
 		"hbs-pages":   "../hbs-pages",
 		"hbs-widgets": "../hbs-widgets"
-	}
+	},
+
+	shim : {
+        "bootstrap" : { "deps" :['jquery'] }
+    }
 });
 
-require(["App", "AppRouter", "AppController"], function(App, AppRouter, AppController) {
+require(["App", "AppRouter", "AppController", "bootstrap"], function(App, AppRouter, AppController) {
 	App.router = new AppRouter({
 		controller: new AppController(App)
 	});

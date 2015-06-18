@@ -1,111 +1,53 @@
-function Chat () {
-    this.socket = null;
+function Chat (socket, chatHistory) {
+    var namespaces = {
+        "chat::create": onChatCreate,
+        "chat::read":   onChatRead,
+        "chat::update": onChatUpdate,
+        "chat::delete": onChatDelete
+    };
 
-    var nextId = 5;
-    var messages = [
-        {
-            "id": 0,
-            "time": "12:00",
-            "nick": "Marty",
-            "message": "Whoa. Wait a minute, Doc. Are you trying to tell me that my mother has got the hots for me?"
-        },
-        {
-            "id": 1,
-            "time": "12:05",
-            "nick": "Doc",
-            "message": "Precisely!"
-        },
-        {
-            "id": 2,
-            "time": "12:10",
-            "nick": "Marty",
-            "message": "Whoa. This is heavy."
-        },
-        {
-            "id": 3,
-            "time": "12:12",
-            "nick": "Doc",
-            "message": "There's that word again. \"Heavy.\" Why are things so heavy in the future? Is there a problem with the Earth's gravitational pull? "
-        }
-    ];
+    for (var key in namespaces) {
+        socket.on(key, namespaces[key]);
+    }
 
-
-    this.setSocket = function(socket) {
-        var map = {
-            "chat::create": onChatCreate,
-            "chat::read":   onChatRead,
-            "chat::update": onChatUpdate,
-            "chat::delete": onChatDelete
-        }
-        if (this.socket) {
-            for (var key in map) {
-                this.socket.removeListener(key, map[key]);
-            }
-        }
-
-        this.socket = socket;
-
-        for (var key in map) {
-            socket.on(key, map[key]);
-        }
-
-    }.bind(this);
+    function getNick() {
+        var sess = socket.request.session;
+        return sess ? sess.nick : null;
+    }
 
     function onChat() {
         console.log("chat");
     }
 
-    function onChatCreate(data) {
-        console.log("chat::create", data);
+    function onChatCreate(message) {
+        console.log("chat::create", message);
         
-        if (data.message && data.message.indexOf("/") === 0) {
-            onChatCommand(data.message);
+        if (message && message.indexOf("/") === 0) {
+            onChatCommand(message);
             return;
         }
 
-        data.id = ++nextId;
+        var result = chatHistory.insert(getNick(), message);
+
+        console.log(result);
         
-        var sess, details, nick;
-        var date = new Date();
-
-        var hh = date.getHours();
-        if (hh < 10) {
-            hh = "0" + hh;
-        }
-
-        var mm = date.getMinutes();
-        if (mm < 10) {
-            mm = "0" + mm;
-        }
-
-        data.time = hh + ":" + mm;
-        
-        sess    = this.socket.request.session;
-        nick = sess ? sess.nick : null;
-
-        console.log(sess, details, nick);
-        
-        data.nick = nick || "Anonymous";
-        messages.push(data);
-        this.socket.emit("chat", [data]);
-        this.socket.broadcast.emit("chat", [data]);
+        socket.emit("chat", [result]);
+        socket.broadcast.emit("chat", [result]);
     }
 
     function onChatDelete(data) {
-        console.log("chat::delete", data);
+        chatHistory.delete(data.id, getNick());
     }
     
     function onChatRead(data) {
-        console.log("chat::read", data);
-        this.socket.emit("chat", messages);
+        var result = chatHistory.read();
+        socket.emit("chat", result);
     }
 
     function onChatUpdate(data) {
-        console.log("chat::update", data);
-        for (var key in data) {
-            details[key] = data[key];
-        }
-        console.log("onChatUpdate not implemented fully");
+        var result = chatHistory.update(data.id, data.nick, data.message);
+        socket.emit("chat", [result]);
+        socket.broadcast.emit("chat", [result]);
     }
 
     function onChatCommand(data) {
@@ -116,21 +58,31 @@ function Chat () {
 
         if (cmd === "/nick") {
             if (arg1) {
-                var oldNick = this.socket.request.session.nick || "Anonymous";
-                this.socket.request.session.nick = arg1;
-                this.socket.emit("chat", {
+                var oldNick = socket.request.session.nick || "Anonymous";
+                socket.request.session.nick = arg1;
+                socket.emit("chat", {
+                    time: (new Date()).toISOString(),
+                    nick: "Server",
                     message: "Your nick is now " + arg1
-                })
-                this.socket.broadcast.emit("chat", {
+                });
+                socket.broadcast.emit("chat", {
+                    time: (new Date()).toISOString(),
+                    nick: "Server",
                     message: oldNick + " is now known as " + arg1
-                })
+                });
             } else {
-                this.socket.emit("chat", {
+                socket.emit("chat", {
+                    time: (new Date()).toISOString(),
+                    nick: "Server",
                     message: "Usage: /nick [your nickname]"
                 });
             }
         } else {
-            this.socket.emit("chat", { message: "Unknown command" });
+            socket.emit("chat", {
+                time: (new Date()).toISOString(),
+                nick: "Server",
+                message: "Unknown command"
+            });
         }
     }
 }

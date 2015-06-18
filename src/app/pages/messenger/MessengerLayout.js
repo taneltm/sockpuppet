@@ -33,13 +33,15 @@ define(function(require, exports, module) {
             this.messages.show(this.messagesView);
         },
 
-        onSubmit: function() {
+        onSubmit: function(e) {
+            e.preventDefault();
+
             var $input  = this.ui.$input;
             var message = $input.val();
 
             $input.val("");
 
-            this.send({ message: message });
+            this.send(message);
         }
     };
 

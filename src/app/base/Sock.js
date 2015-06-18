@@ -37,16 +37,24 @@ define(function(require, exports, module) {
                 data = JSON.stringify(options.attrs || model.toJSON(options));
             }
 
+            options.reconnect = options.reconnect || function() {
+                socket.emit(channel + "::read");
+            };
+
             console.log("Sock.sync", namespace, data);
             socket.emit(namespace, data);
             model.trigger('request', model, socket, options);
 
             if (bound === false && options && options.success) {
                 socket.on(channel, options.success);
+
+                socket.on("reconnect", options.reconnect);
+
                 bound = true;
 
                 model.on("destroy", function() {
-                    socket.removeListener(channel, this.options.success);
+                    socket.removeListener(channel, options.success);
+                    socket.removeListener("reconnect", options.reconnect);
                     bound = false;
                 });
             }

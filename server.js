@@ -32,6 +32,7 @@ var session      = require('express-session');
 var AuthService = require("./services/Auth");
 var TestService = require("./services/Test");
 var ChatService = require("./services/Chat");
+var ChatHistory = require("./services/ChatHistory");
 
 
 /**
@@ -87,15 +88,14 @@ io.use(function(socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next);
 });
 
-var chatService = new ChatService();
+var chatHistory = new ChatHistory();
 
 io.on('connection', function (socket) {
 	console.log("sock:connection");
 
 	new AuthService(socket);
 	new TestService(socket);
-
-	chatService.setSocket(socket);
+	new ChatService(socket, chatHistory);
 });
 
 /**

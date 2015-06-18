@@ -23,6 +23,9 @@
 						<li>
 							<a href="#link/3">Link 3</a>
 						</li>
+						<li>
+							<a href="#messenger">Messenger</a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<% if (isLoggedIn) { %>

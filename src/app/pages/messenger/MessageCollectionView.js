@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+    var $                 = require("jquery");
     var App               = require("App");
     var Marionette        = require("marionette");
     var MessageItemView   = require("pages/messenger/MessageItemView");
@@ -9,10 +10,11 @@ define(function(require, exports, module) {
 
         childView: MessageItemView,
 
-        initialize: function() {
-            setTimeout(function() {
-                this.render();
-            }.bind(this), 2000);
+
+        onAddChild: function() {
+            var $body = $("html, body");
+
+            $body.stop().animate({scrollTop: $body.height()}, 1000);
         }
     };
 
