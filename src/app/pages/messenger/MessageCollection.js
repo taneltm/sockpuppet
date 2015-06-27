@@ -1,10 +1,10 @@
 define(function(require, exports, module) {
-    var Backbone     = require("backbone");
+    var Collection   = require("Collection");
     var Sock         = require("Sock");
     var MessageModel = require("pages/messenger/MessageModel");
 
     var MessageCollection = {
-        sync: Sock.sync("chat"),
+        sync: "chat",
         
         model: MessageModel,
 
@@ -39,5 +39,5 @@ define(function(require, exports, module) {
         },
     };
 
-    module.exports = Backbone.Collection.extend(MessageCollection);
+    module.exports = Collection.extend(MessageCollection);
 });
