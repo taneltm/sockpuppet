@@ -1,21 +1,21 @@
 define(function(require, exports, module) {
-	var App        = require("App");
-	var Marionette = require("marionette");
-	var Sockpuppet = require("sockpuppet");
+    var App        = require("App");
+    var Marionette = require("marionette");
+    var Sockpuppet = require("sockpuppet");
 
-	var FormAuthView = require("widgets/formAuth/FormAuthView");
+    var FormAuthView = require("widgets/formAuth/FormAuthView");
 
-	var FormAuth = {
-		view: FormAuthView,
+    var FormAuth = {
+        view: FormAuthView,
 
-		viewEvents: {
-			"submit": "onFormSubmit"
-		},
+        viewEvents: {
+            "submit": "onFormSubmit"
+        },
 
-		onFormSubmit: function(loginCreds) {
-			App.widget.trigger("auth:submit", loginCreds);
-		}
-	};
+        onFormSubmit: function(loginCreds) {
+            App.widget.trigger("auth:submit", loginCreds);
+        }
+    };
 
-	module.exports = Sockpuppet.Widget.extend(FormAuth);
+    module.exports = Sockpuppet.Widget.extend(FormAuth);
 });

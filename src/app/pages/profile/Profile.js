@@ -1,9 +1,9 @@
 define(function(require, exports, module) {
     var App        = require("App");
-	var Sockpuppet = require("sockpuppet");
+    var Sockpuppet = require("sockpuppet");
     var template   = require("tpl!pages/profile/Profile.tpl");
 
-	var Profile = {
+    var Profile = {
         pageRegion: App.layout.getRegion("main"),
 
         className: "container",
@@ -13,5 +13,5 @@ define(function(require, exports, module) {
         model: App.user
     };
 
-	module.exports = Sockpuppet.Page.extend(Profile);
+    module.exports = Sockpuppet.Page.extend(Profile);
 });

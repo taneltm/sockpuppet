@@ -1,17 +1,17 @@
 define(function(require, exports, module) {
-	var Marionette = require("marionette");
+    var Marionette = require("marionette");
 
-	var AppLayout = {
-		el: 'body',
+    var AppLayout = {
+        el: 'body',
 
-		template: false,
+        template: false,
 
-		regions: {
-			header: "header",
-			main: "main",
-			footer: "footer"
-		}
-	};
+        regions: {
+            header: "header",
+            main: "main",
+            footer: "footer"
+        }
+    };
 
-	module.exports = Marionette.LayoutView.extend(AppLayout);
+    module.exports = Marionette.LayoutView.extend(AppLayout);
 });
