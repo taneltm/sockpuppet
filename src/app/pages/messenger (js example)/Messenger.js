@@ -1,14 +1,15 @@
 define(function(require, exports, module) {
     var App          = require("App");
-    var Marionette   = require("marionette");
-    var template     = require("tpl!pages/messenger/MessengerLayout.tpl");
+    var Sockpuppet   = require("sockpuppet");
+    var tpl          = require("tpl!pages/messenger/Messenger.tpl");
     var MessagesView = require("pages/messenger/MessageCollectionView");
-    var Sock         = require("Sock");
 
-    var MessengerLayout = {
+    var Messenger = {
+        pageRegion: App.layout.getRegion("main"),
+
         className: "container",
         
-        template: template,
+        template: tpl,
 
         regions: {
             "messages": ".region-messages"
@@ -23,7 +24,7 @@ define(function(require, exports, module) {
             "submit @ui.$form": "onSubmit"
         },
 
-        send: Sock.emit("chat"),
+        send: Sockpuppet.sock.emit("chat"),
 
         initialize: function() {
             this.messagesView = new MessagesView();
@@ -45,5 +46,5 @@ define(function(require, exports, module) {
         }
     };
 
-    module.exports = Marionette.LayoutView.extend(MessengerLayout);
+    module.exports = Sockpuppet.Page.extend(Messenger);
 });

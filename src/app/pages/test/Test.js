@@ -1,8 +1,35 @@
 define(function(require, exports, module) {
-	var Page       = require("Page");
-	var TestLayout = require("pages/test/TestLayout");
+    var Sockpuppet  = require("sockpuppet");
+    var Backbone    = require("backbone");
+    var ColorPicker = require("widgets/colorPicker/ColorPicker");
+    var template    = require("tpl!pages/test/Test.tpl");
 
-	var Test = { view: TestLayout };
+    var Test = {
+        pageRegion: App.layout.getRegion("main"),
 
-	module.exports = Page.extend(Test);
+        className: "container",
+        
+        template: template,
+
+        templateHelpers: {
+            getRandomNumber: function() {
+                return Math.random();
+            }
+        },
+
+        regions: {
+            "colorPickerRegion": ".region-color-picker" 
+        },
+
+        initialize: function(options) {
+            this.model = new Backbone.Model();
+            this.model.set("linkId", options.linkId);
+        },
+
+        onRender: function() {
+            new ColorPicker({ region: this.colorPickerRegion });
+        }
+    };
+
+    module.exports = Sockpuppet.Page.extend(Test);
 });

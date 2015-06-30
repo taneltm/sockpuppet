@@ -1,14 +1,14 @@
 define(function(require, exports, module) {
     var Backbone = require("backbone");
-    var Sock     = require("Sock");
+    var sock     = require("mock");
 
     var Model = {
         constructor: function(options) {
             if (typeof this.sync == "string") {
-                this.sync = Sock.sync(this.sync);
+                this.sync = sock.sync(this.sync);
             }
 
-            Backbone.Model.prototype.constructor.call(this, arguments);
+            Backbone.Model.prototype.constructor.apply(this, arguments);
         }
     };
 

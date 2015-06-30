@@ -4,14 +4,6 @@ define(function(require, exports, module) {
 
     var socket = io(serverUrl);
 
-    socket.on("connect", function(data) {
-        console.log("SocketSync:onConnect", data);
-    });
-
-    socket.on("disconnect", function(data) {
-        console.log("SocketSync:onDisconnect");
-    });
-
     var socketEmit = function(channel) {
         var namespace = [channel, "create"].join("::");
         return function(data) {
@@ -20,11 +12,9 @@ define(function(require, exports, module) {
     };
 
     var socketSync = function(channel) {
-        console.log("Sock.socketSync");
         var bound = false;
 
         return function(method, model, options) {
-            console.log("Sock.sync", method);
             var data;
 
             var namespace = [channel, method].join("::");
@@ -41,7 +31,6 @@ define(function(require, exports, module) {
                 socket.emit(channel + "::read");
             };
 
-            console.log("Sock.sync", namespace, data);
             socket.emit(namespace, data);
             model.trigger('request', model, socket, options);
 
@@ -63,11 +52,11 @@ define(function(require, exports, module) {
         };
     };
 
-    var Sock = {
+    var sock = {
         sync: socketSync,
         emit: socketEmit,
         socket: socket
     };
 
-    module.exports = Sock;
+    module.exports = sock;
 });

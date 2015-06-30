@@ -1,8 +1,15 @@
 define(function(require, exports, module) {
-	var Page       = require("Page");
-	var HomeLayout = require("pages/home/HomeLayout");
+    var App = require("App");
+	var Sockpuppet = require("sockpuppet");
+	var template   = require("tpl!pages/home/Home.tpl");
 
-	var Home = { view: HomeLayout };
+	var HomeLayout = {
+        pageRegion: App.layout.getRegion("main"),
 
-	module.exports = Page.extend(Home);
+		className: "container",
+		
+		template: template
+	};
+
+	module.exports = Sockpuppet.Page.extend(HomeLayout);
 });

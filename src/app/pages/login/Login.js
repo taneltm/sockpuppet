@@ -1,24 +1,39 @@
 define(function(require, exports, module) {
-	var App  = require("App");
-	var Page = require("Page");
+    var App = require("App");
+    var Sockpuppet = require("sockpuppet");
+    var template = require("tpl!pages/login/Login.tpl");
+    var FormAuth = require("widgets/formAuth/FormAuth");
 
-	var LoginLayout = require("pages/login/LoginLayout");
+    var Login = {
+        pageRegion: App.layout.getRegion("main"),
 
-	var Login = {
-		view: LoginLayout,
+        className: "container",
 
-		initialize: function(options) {
-			console.log("Login:initialize");
+        template: template,
 
-			this.listenTo(App.service, "auth:login:success", this.onLogin);
-			this.listenTo(App.service, "auth:login:fail", this.onLogin);
-		},
+        regions: {
+            formAuthRegion: ".region-authentication-form"
+        },
 
-		onLogin: function(userData) {
-			console.log("Login:onLogin");
-			App.user.set(userData);
-		}
-	};
+        initialize: function(options) {
+            console.log("Login:initialize");
 
-	module.exports = Page.extend(Login);
+            this.listenTo(App.service, "auth:login:success", this.onLogin);
+            this.listenTo(App.service, "auth:login:fail", this.onLogin);
+        },
+
+        onRender: function() {
+            console.log("LoginLayout:onRender");
+            new FormAuth({
+                region: this.formAuthRegion
+            });
+        },
+
+        onLogin: function(userData) {
+            console.log("Login:onLogin");
+            App.user.set(userData);
+        }
+    };
+
+    module.exports = Sockpuppet.Page.extend(Login);
 });

@@ -1,8 +1,17 @@
 define(function(require, exports, module) {
-	var Page          = require("Page");
-	var ProfileLayout = require("pages/profile/ProfileLayout");
+    var App        = require("App");
+	var Sockpuppet = require("sockpuppet");
+    var template   = require("tpl!pages/profile/Profile.tpl");
 
-	var Profile = { view: ProfileLayout };
+	var Profile = {
+        pageRegion: App.layout.getRegion("main"),
 
-	module.exports = Page.extend(Profile);
+        className: "container",
+        
+        template: template,
+
+        model: App.user
+    };
+
+	module.exports = Sockpuppet.Page.extend(Profile);
 });

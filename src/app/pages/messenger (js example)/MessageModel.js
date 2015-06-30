@@ -1,5 +1,5 @@
 define(function(require, exports, module) {
-    var Backbone = require("backbone");
+    var Sockpuppet = require("sockpuppet");
 
     var MessageModel = {
         defaults: {
@@ -9,5 +9,5 @@ define(function(require, exports, module) {
         }
     };
 
-    module.exports = Backbone.Model.extend(MessageModel);
+    module.exports = Sockpuppet.Model.extend(MessageModel);
 });

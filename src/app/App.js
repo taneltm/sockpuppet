@@ -4,7 +4,6 @@ define(function(require, exports, module) {
 	var serverUrl  = require("utils/serverUrl");
 	var io         = require("socket.io");
 	var UserModel  = require("models/UserModel");
-	var SockTestModel  = require("models/SockTestModel");
 	
 	var App = new Marionette.Application();
 
@@ -20,11 +19,6 @@ define(function(require, exports, module) {
 			footer: "footer"
 		}
 	});
-
-	// ----------
-	// Test
-	// ----------
-	window.sockTestModel = new SockTestModel();
 
 	App.layout   = new IndexLayout();
 	App.user     = new UserModel();

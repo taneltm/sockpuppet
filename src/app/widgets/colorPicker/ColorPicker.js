@@ -1,7 +1,6 @@
 define(function(require, exports, module) {
     var App        = require("App");
-    var Marionette = require("marionette");
-    var Widget     = require("Widget");
+    var Sockpuppet = require("sockpuppet");
 
     var ColorPickerView = require("widgets/colorPicker/ColorPickerView");
 
@@ -17,5 +16,5 @@ define(function(require, exports, module) {
         }
     };
 
-    module.exports = Widget.extend(ColorPicker);
+    module.exports = Sockpuppet.Widget.extend(ColorPicker);
 });

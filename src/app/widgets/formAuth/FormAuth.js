@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
 	var App        = require("App");
 	var Marionette = require("marionette");
-	var Widget     = require("Widget");
+	var Sockpuppet = require("sockpuppet");
 
 	var FormAuthView = require("widgets/formAuth/FormAuthView");
 
@@ -17,5 +17,5 @@ define(function(require, exports, module) {
 		}
 	};
 
-	module.exports = Widget.extend(FormAuth);
+	module.exports = Sockpuppet.Widget.extend(FormAuth);
 });

@@ -46,6 +46,20 @@ module.exports = function(grunt) {
       }
     },
 
+    coffee: {
+      compile: {
+        options: {
+          sourceMap: true
+        },
+        expand: true,
+        flatten: false,
+        cwd: "build",
+        src: ["**/*.coffee"],
+        dest: "build",
+        ext: ".js"
+      }
+    },
+
     requirejs: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -78,6 +92,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-stylus');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -88,7 +103,8 @@ module.exports = function(grunt) {
     'clean',
     'jshint',
     'stylus',
-    'copy:build'
+    'copy:build',
+    'coffee'
   ]);
 
   grunt.registerTask('release', [

@@ -1,21 +1,24 @@
 define(function(require, exports, module) {
-    var Backbone = require("backbone");
-    var Sock     = require("Sock");
+    var Sockpuppet   = require("sockpuppet");
+    var MessageModel = require("pages/messenger/MessageModel");
 
     var MessageCollection = {
-        sync: Sock.sync("chat"),
+        sync: "chat",
         
         model: MessageModel,
 
         events: {
             "add": "addMessage",
             "remove": "removeMessage",
-            "change": "changeMessage"
+            "change": "changeMessage",
+            "reset": "resetMessage"
         },
 
         initialize: function() {
             // Fetch the initial data and start socket listener
-            this.fetch();
+            this.fetch({
+                remove: false
+            });
         },
 
         addMessage: function(obj) {
@@ -29,7 +32,11 @@ define(function(require, exports, module) {
         changeMessage: function(obj) {
             console.log("MessageCollection.changeMessage", obj);
         },
+
+        resetMessage: function(obj) {
+            console.log("MessageCollection.resetMessage", obj);
+        },
     };
 
-    module.exports = Backbone.Collection.extend(MessageCollection);
+    module.exports = Sockpuppet.Collection.extend(MessageCollection);
 });
