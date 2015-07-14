@@ -46,6 +46,6 @@ You can use un-minified libraries, `grunt release` will minify everything for yo
 
 Planned and implemented changes
 ===============================
-- [ ] Add Sock.sync to use Socket.io with models and collections automatically.
-- [ ] Add a simple messenger example to demonstrate Sock.sync.
-- [ ] Pages do not need a controller. The Page class should extend LayoutView for convenience.
+- [x] Add Sock.sync to use Socket.io with models and collections automatically.
+- [x] Add a simple messenger example to demonstrate Sock.sync.
+- [x] Pages do not need a controller. The Page class should extend LayoutView for convenience.
