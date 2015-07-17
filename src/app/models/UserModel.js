@@ -1,15 +1,22 @@
 define(function(require, exports, module) {
-    var Backbone  = require("backbone");
+    var Sockpuppet  = require("sockpuppet");
 
     var UserModel = {
+        sync: "auth",
+
         defaults: {
             isLoggedIn: false,
+            loginError: null,
             honorific: null,
             forename: null,
             surname: null,
             lifestory: null
+        },
+
+        initialize: function() {
+            this.fetch();
         }
     };
 
-    module.exports = Backbone.Model.extend(UserModel);
+    module.exports = Sockpuppet.Model.extend(UserModel);
 });

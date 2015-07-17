@@ -24,8 +24,6 @@ define(function(require, exports, module) {
             "submit @ui.$form": "onSubmit"
         },
 
-        send: Sockpuppet.sock.emit("chat"),
-
         initialize: function() {
             this.messagesView = new MessagesView();
         },
@@ -42,7 +40,7 @@ define(function(require, exports, module) {
 
             $input.val("");
 
-            this.send(message);
+            Sockpuppet.sock.emit("chat::create", message);
         }
     };
 

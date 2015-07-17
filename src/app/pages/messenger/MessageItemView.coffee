@@ -9,11 +9,21 @@ define((require, exports, module) ->
 
         className: 'item'
 
+        events:
+            'click .delete': 'deleteMessage'
+
         templateHelpers:
-            getTime: =>
+            getTime: ->
                 moment(@time).format('HH:mm')
 
-            getNick: =>
+            getNick: ->
                 @nick || 'Anonymous'
+
+        deleteMessage: =>
+            console.log("MessageItemView.deleteMessage", this.model.attributes)
+            this.model.destroy({
+                success: -> console.log("MessageItemView.deleteMessage.success")
+                error: -> console.log("MessageItemView.deleteMessage.error")
+            })
 
 )

@@ -1,4 +1,5 @@
 define(function(require, exports, module) {
+    var _          = require("underscore");
     var App        = require("App");
     var Sockpuppet = require("sockpuppet");
     var template   = require("tpl!pages/logout/Logout.tpl");
@@ -10,18 +11,16 @@ define(function(require, exports, module) {
         
         template: template,
 
-        initialize: function(options) {
-            console.log("Logout:initialize");
-
-            this.listenTo(App.service, "auth:logout:done", this.onLogout);
-            
-            App.service.trigger("auth:logout");
+        onRender: function(options) {
+            _.defer(this.logout);
         },
 
-        onLogout: function(userData) {
-            console.log("Logout:onLogout", userData);
-            App.user.set(userData);
-            App.navigate("");
+        logout: function() {
+            if (App.user.get("isLoggedIn")) {
+                Sockpuppet.sock.emit("auth::logout");
+            } else {
+                App.navigate("#");
+            }
         }
     };
 

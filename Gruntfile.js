@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         dest: "build/",
         src: [
           "**",
-          "!style/**"
+          "!style/**/*.styl"
         ]
       },
 

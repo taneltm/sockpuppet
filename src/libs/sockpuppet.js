@@ -16,48 +16,86 @@ define(function(require, exports, module) {
     var sock = function() {
         var conn = io(serverUrl);
 
-        var emit = function(channel) {
-            var namespace = [channel, "create"].join("::");
+        /**
+         * @example
+         *     onSubmit: function(message) {
+         *         Sockpuppet.sock.emit("chat::create", message);
+         *     }
+         */
+        var emit = function(channel, data) {
+            conn.emit(channel, data);
+        };
+
+        /**
+         * @example
+         *     sendChatMessage: Sockpuppet.sock.emitter("chat::create"),
+         *     onSubmit: function(message) {
+         *         this.sendChatMessage(message);
+         *     }
+         */
+        var emitter = function(channel) {
             return function(data) {
-                conn.emit(namespace, data);
+                conn.emit(channel, data);
             };
         };
 
+        /**
+         * @example
+         *     // With Backbone model/collection
+         *     sync: Sockpuppet.sock.sync("chat"),
+         *     initilaize: function() {
+         *         this.fetch(); // Triggers socket.emit("chat::read")
+         *                       // Then starts listening on the "chat" channel
+         *     }
+         *
+         * @example
+         *     // With Sockpuppet model/collection
+         *     sync: "chat",
+         *     initialize: function() {
+         *         this.fetch();
+         *     }
+         */
         var sync = function(channel) {
             var bound = false;
 
-            return function(method, model, options) {
+            return function(method, entity, options) {
+                console.log("sockpuppet.sock.sync", method, entity, options);
                 var data;
 
                 var namespace = [channel, method].join("::");
                 
                 var shouldHaveData = (
-                    method === 'create' || method === 'update' || method === 'patch'
+                    method === 'create' || method === 'update' || method === 'patch' || method === 'delete'
                 );
 
-                if (!options.data && model && shouldHaveData) {
-                    data = JSON.stringify(options.attrs || model.toJSON(options));
+                if (!options.data && entity && shouldHaveData) {
+                    data = options.attrs || entity.toJSON(options);
                 }
 
                 options.reconnect = options.reconnect || function() {
                     conn.emit(channel + "::read");
                 };
 
+                console.log("Sockpuppet.sync:emit", namespace, data);
                 conn.emit(namespace, data);
-                model.trigger('request', model, conn, options);
+                entity.trigger('request', entity, conn, options);
 
                 if (bound === false && options && options.success) {
-                    conn.on(channel, options.success);
+                    var isModel       = entity instanceof Backbone.Model;
+                    var hasCollection = !!entity.collection;
 
+                    conn.on(channel, options.success);
                     conn.on("reconnect", options.reconnect);
 
                     bound = true;
 
-                    model.on("destroy", function() {
-                        conn.removeListener(channel, options.success);
-                        conn.removeListener("reconnect", options.reconnect);
-                        bound = false;
-                    });
+                    if (isModel && !hasCollection) {
+                        entity.on("destroy", function() {
+                            conn.removeListener(channel, options.success);
+                            conn.removeListener("reconnect", options.reconnect);
+                            bound = false;
+                        });
+                    }
                 }
 
                 return conn;

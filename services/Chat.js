@@ -11,32 +11,55 @@ function Chat (socket, chatHistory) {
     }
 
     function getNick() {
+        var nick = null;
         var sess = socket.request.session;
-        return sess ? sess.nick : null;
-    }
 
-    function onChat() {
-        console.log("chat");
+        if (sess.nick) {
+            nick = sess.nick;
+        } else if (sess.details) {
+            var details = sess.details;
+            nick = [
+                details.honorific + ".",
+                details.forename,
+                details.surname
+            ].join(" ");
+        }
+
+        console.log("Chat.getNick", nick);
+        return nick;
     }
 
     function onChatCreate(message) {
-        console.log("chat::create", message);
-        
+        var result;
+
         if (message && message.indexOf("/") === 0) {
             onChatCommand(message);
             return;
         }
 
-        var result = chatHistory.insert(getNick(), message);
+        result = chatHistory.insert(getNick(), message);
 
-        console.log(result);
+        console.log("Chat.onChatCreate", message, result);
         
         socket.emit("chat", [result]);
         socket.broadcast.emit("chat", [result]);
     }
 
     function onChatDelete(data) {
-        chatHistory.delete(data.id, getNick());
+        console.log("Chat.onChatDelete", typeof data);
+        console.log("Chat.onChatDelete", data);
+        console.log("Chat.onChatDelete", data.id);
+        var isDeleted = chatHistory.delete(data.id, getNick());
+        if (!isDeleted) {
+            socket.emit("chat", {
+                time: (new Date()).toISOString(),
+                nick: "Server",
+                message: "The message was not removed, because it's not yours."
+            });
+
+            // The model was removed on the client side, we need to put it back.
+            socket.emit("chat", data);
+        }
     }
     
     function onChatRead(data) {

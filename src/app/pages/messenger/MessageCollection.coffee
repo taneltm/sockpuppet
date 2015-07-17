@@ -7,6 +7,8 @@ define((require, exports, module) ->
         
         model: MessageModel
 
+        comparator: 'time'
+
         events:
             add:    'addMessage'
             remove: 'removeMessage'
@@ -26,6 +28,7 @@ define((require, exports, module) ->
 
         addMessage: (model) =>
             console.log('MessageCollection.addMessage', model.get('message'))
+
 
         removeMessage: =>
             console.log('MessageCollection.removeMessage')

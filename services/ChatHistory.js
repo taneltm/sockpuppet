@@ -63,20 +63,20 @@ function ChatHistory () {
     };
 
     this.delete = function(id, nick) {
+        console.log("ChatHistory.delete", id, nick);
         for (var i = 0; i < messages.length; i++) {
             var hasIdMatch = messages[i].id === id;
             var hasNickMatch = messages[i].nick === nick;
 
             if (hasIdMatch && hasNickMatch) {
-                messages[i].time = (new Date()).toISOString();
-                messages[i].message = null;
-                messages[i].edited = true;
-
-                return messages[i];
+                console.log("ChatHistory.delete, hasIdMatch, hasNickMatch");
+                messages.splice(i, 1);
+                return true;
             } else if (hasIdMatch) {
                 console.warn(
                     nick + " tried to delete the message of " + messages[i].nick
                 );
+                return false;
             }
         }
     };

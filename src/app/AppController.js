@@ -2,8 +2,6 @@ define(function(require, exports, module) {
     var Marionette = require("marionette");
     var App        = require("App");
 
-    var AuthService = require("services/Auth");
-
     var HeaderWidget = require("widgets/header/Header");
 
     var Home      = require("pages/home/Home");
@@ -15,13 +13,7 @@ define(function(require, exports, module) {
 
     var AppController = {
         initialize: function() {
-            this.initializeServices();
-
             new HeaderWidget({ region: App.layout.getRegion("header") });
-        },
-
-        initializeServices: function() {
-            new AuthService();
         },
 
         index: function() {

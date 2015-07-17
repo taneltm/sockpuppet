@@ -21,8 +21,6 @@ define((require, exports, module) ->
         events:
             'submit @ui.$form': 'onSubmit'
 
-        send: Sockpuppet.sock.emit('chat')
-
         initialize: =>
             this.messagesView = new MessagesView()
 
@@ -37,6 +35,6 @@ define((require, exports, module) ->
 
             $input.val('')
 
-            this.send(message)
+            Sockpuppet.sock.emit('chat::create', message)
 
 )

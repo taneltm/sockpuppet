@@ -6,7 +6,7 @@ require.config({
 
 		"utils": "../utils",
 
-		"bootstrap":   "../libs/bootstrap/bootstrap",
+		"bootstrap":   "../libs/bootstrap",
 		"jquery":      "../libs/jquery",
 		"underscore":  "../libs/lodash",
 		"backbone":    "../libs/backbone",

@@ -30,7 +30,6 @@ var session      = require('express-session');
  * Require services
  */
 var AuthService = require("./services/Auth");
-var TestService = require("./services/Test");
 var ChatService = require("./services/Chat");
 var ChatHistory = require("./services/ChatHistory");
 
@@ -94,7 +93,6 @@ io.on('connection', function (socket) {
 	console.log("sock:connection");
 
 	new AuthService(socket);
-	new TestService(socket);
 	new ChatService(socket, chatHistory);
 });
 
